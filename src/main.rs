@@ -1,10 +1,3 @@
-use std::fs::{create_dir_all, File, OpenOptions, remove_file};
-use std::io::{BufRead, BufReader, Write};
-use std::path::PathBuf;
-use std::time::SystemTime;
-
-use chrono::{Datelike, DateTime, Duration};
-use chrono::NaiveDateTime;
 use chrono::offset::Utc;
 use structopt::StructOpt;
 
@@ -36,8 +29,6 @@ fn write_time(args: &Cli) {
 
     utils::append_to_file(&utils::get_current_logfile_path(), &newline);
 }
-
-
 
 
 

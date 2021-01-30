@@ -1,12 +1,10 @@
-use std::fs::{create_dir_all, File, OpenOptions, remove_file};
-use std::io::{BufRead, BufReader, Write};
+use std::fs::{create_dir_all, File, OpenOptions};
+use std::io::{Write};
 use std::path::PathBuf;
-use std::time::SystemTime;
 
-use chrono::{Datelike, DateTime, Duration};
+use chrono::{Datelike};
 use chrono::NaiveDateTime;
 use chrono::offset::Utc;
-use structopt::StructOpt;
 
 static time_format: &'static str = "%Y-%m-%d %H:%M:%S";
 

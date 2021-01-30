@@ -10,7 +10,7 @@ mod static_values;
 pub fn store_timer_result(args: Cli) {
     let mut tmp_file = utils::read_file(&utils::get_tmp_file_path()).unwrap();
     let reader = BufReader::new(&mut tmp_file);
-    let mut last_line = reader
+    let last_line = reader
         .lines()
         .map(|l| l.expect("couldnt read a line"))
         .last()
