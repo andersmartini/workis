@@ -1,13 +1,15 @@
-use crate::{Cli, utils};
-use std::io::{BufReader, BufRead};
-use chrono::{NaiveDateTime, Utc};
 use std::fs::remove_file;
+use std::io::{BufRead, BufReader};
+
+use chrono::{NaiveDateTime, Utc};
+
+use crate::{Cli, utils};
 use crate::done::static_values::TIME_FORMAT;
 
-#[path= "../static_values.rs"]
+#[path = "../static_values.rs"]
 mod static_values;
 
-pub fn store_timer_result(args: Cli) {
+pub fn store_timer_result(args: &Cli) {
     let mut tmp_file = utils::read_file(&utils::get_tmp_file_path()).unwrap();
     let reader = BufReader::new(&mut tmp_file);
     let last_line = reader
@@ -32,5 +34,6 @@ pub fn store_timer_result(args: Cli) {
     println!("adding work to log: {}", newline);
     utils::append_to_file(&utils::get_current_logfile_path(), &newline);
 
-    remove_file(utils::get_tmp_file_path());
+    remove_file(utils::get_tmp_file_path())
+        .expect("Failed to remove tmp file, this probably isn't a big deal though");
 }

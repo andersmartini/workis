@@ -6,6 +6,8 @@ mod utils;
 mod start;
 #[path = "subcommands/done.rs"]
 mod done;
+#[path = "subcommands/sum.rs"]
+mod sum;
 
 fn main() {
     let args = Cli::from_args();
@@ -17,7 +19,10 @@ fn main() {
         start::store_now()
     }
     if args.subcommand == "done" {
-        done::store_timer_result(args)
+        done::store_timer_result(&args)
+    }
+    if args.subcommand == "sum"{
+        sum::sum_monthly_work(&args)
     }
 }
 
@@ -40,5 +45,7 @@ pub struct Cli {
     lunch: i64,
     #[structopt(short = "h", long = "hours")]
     hrs: Option<f64>,
+    #[structopt(short = "m", long = "minutes", default_value = "0")]
+    min: i64
 }
 
