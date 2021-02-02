@@ -4,10 +4,6 @@ use std::io::{BufRead, BufReader};
 use chrono::{NaiveDateTime, Utc};
 
 use crate::{Cli, utils};
-use crate::done::static_values::TIME_FORMAT;
-
-#[path = "../static_values.rs"]
-mod static_values;
 
 pub fn store_timer_result(args: &Cli) {
     let mut tmp_file = utils::read_file(&utils::get_tmp_file_path()).unwrap();
@@ -26,8 +22,8 @@ pub fn store_timer_result(args: &Cli) {
     let hours = actual_minutes / 60;
     let minutes = actual_minutes % 60;
 
-    let newline = format!("{} : {}:{}",
-                          now.format(TIME_FORMAT),
+    let newline = format!("{} {} {}",
+                          now.date(),
                           hours,
                           minutes);
 

@@ -29,7 +29,7 @@ pub fn append_to_file(path: &PathBuf, line: &String) {
 }
 
 pub fn get_storage_catalog_dir() -> PathBuf {
-    return dirs::home_dir().unwrap().join("./.rusttime");
+    return dirs::home_dir().unwrap().join("./.workis");
 }
 
 pub fn get_tmp_file_path() -> PathBuf {
@@ -38,7 +38,7 @@ pub fn get_tmp_file_path() -> PathBuf {
 
 pub fn get_current_logfile_path() -> PathBuf {
     let now = Utc::now().naive_utc();
-    let filename = format!("{}-{}.txt", now.year(), now.month());
+    let filename = format!("{}-{}", now.year(), now.month());
     let subpath = format!("./{}", filename);
     return get_storage_catalog_dir().join(subpath);
 }
